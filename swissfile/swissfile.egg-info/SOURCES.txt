@@ -1,0 +1,8 @@
+setup.py
+swissfile.py
+swissfile.egg-info/PKG-INFO
+swissfile.egg-info/SOURCES.txt
+swissfile.egg-info/dependency_links.txt
+swissfile.egg-info/entry_points.txt
+swissfile.egg-info/requires.txt
+swissfile.egg-info/top_level.txt
