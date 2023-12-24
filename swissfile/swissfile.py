@@ -88,6 +88,28 @@ def untag(path: str, tag: str):
     # check to see if the file exists is it doesnt then return an error
     if not os.path.exists(path):
         return {"error": f"File {path} does not exist."}
+    
+    #check to see if the tag is in the tagdata file
+    if not os.path.exists(f"{path}.tagdata"):
+        return {"error": f"File {path} does not have any tags."}
+    
+    #check to see if the tag is in the tagdata file
+    if not tag in open(f"{path}.tagdata").read():
+        return {"error": f"File {path} does not have the tag {tag}."}
+    else:
+        #remove the tag from the file
+        with open(f"{path}.tagdata", "r") as f:
+            lines = f.readlines()
+        with open(f"{path}.tagdata", "w") as f:
+            for line in lines:
+                if line.strip("\n") != tag:
+                    f.write(line)
+    # if the length of the stripped file is 0 then remove the file
+    if os.stat(f"{path}.tagdata").st_size == 0:
+        os.remove(f"{path}.tagdata")
+
+    
+    
 
 
 if __name__ == "__main__":
