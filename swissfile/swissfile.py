@@ -36,17 +36,19 @@ def add_tag_to_file(file, tag):
     Add a tag to a file.
     """
     if os.path.exists(file):
-        with open(f"{file}.tagdata", "r") as f:
-            if tag in f.read():
-                return {}
+        if os.path.exists(f"{file}.tagdata"):
+            with open(f"{file}.tagdata", "r") as f:
+                if tag in f.read():
+                    return {}
 
         with open(f"{file}.tagdata", "a") as f:
             # check to see if the tag is already in the file
-            f.write(f"\n{tag}")
+            f.write(f"{tag}\n")
 
 
 @cli.command()
 @click.option("--path", default=".", help="Path to file.")
+@click.option("--tag", default=".", help="Tag to add.")
 def tag(path: str, tag: str):
     """
     Tag a file with a keyword.
@@ -72,6 +74,7 @@ def tag(path: str, tag: str):
 
 @cli.command()
 @click.option("--path", default=".", help="Path to file.")
+@click.option("--tag", default=".", help="Tag to remove.")
 def untag(path: str, tag: str):
     """
     Remove a tag from a file.
