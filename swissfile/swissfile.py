@@ -36,12 +36,12 @@ def add_tag_to_file(file, tag):
     Add a tag to a file.
     """
     if os.path.exists(file):
-        if os.path.exists(f"{file}.tagdata"):
-            with open(f"{file}.tagdata", "r") as f:
+        if os.path.exists(f".{file}.tagdata"):
+            with open(f".{file}.tagdata", "r") as f:
                 if tag in f.read():
                     return {}
 
-        with open(f"{file}.tagdata", "a") as f:
+        with open(f".{file}.tagdata", "a") as f:
             # check to see if the tag is already in the file
             f.write(f"{tag}\n")
 
@@ -90,23 +90,23 @@ def untag(path: str, tag: str):
         return {"error": f"File {path} does not exist."}
     
     #check to see if the tag is in the tagdata file
-    if not os.path.exists(f"{path}.tagdata"):
+    if not os.path.exists(f".{path}.tagdata"):
         return {"error": f"File {path} does not have any tags."}
     
     #check to see if the tag is in the tagdata file
-    if not tag in open(f"{path}.tagdata").read():
+    if not tag in open(f".{path}.tagdata").read():
         return {"error": f"File {path} does not have the tag {tag}."}
     else:
         #remove the tag from the file
-        with open(f"{path}.tagdata", "r") as f:
+        with open(f".{path}.tagdata", "r") as f:
             lines = f.readlines()
-        with open(f"{path}.tagdata", "w") as f:
+        with open(f".{path}.tagdata", "w") as f:
             for line in lines:
                 if line.strip("\n") != tag:
                     f.write(line)
     # if the length of the stripped file is 0 then remove the file
-    if os.stat(f"{path}.tagdata").st_size == 0:
-        os.remove(f"{path}.tagdata")
+    if os.stat(f".{path}.tagdata").st_size == 0:
+        os.remove(f".{path}.tagdata")
 
     
     
