@@ -5,19 +5,26 @@ and dealing with large numbers of files.
 """
 
 import click
+import logging
 
 
 @click.group()
 def cli():
-	pass
+    pass
 
 
 @cli.command()
-def tag():
-	"""
-	Tag a file with a keyword.
-	"""
-	print("Tagging a file...")
-	pass
+@click.option("--path", default=".", help="Path to file.")
+def tag(path: str, tag: str) -> dict:
+    """
+    Tag a file with a keyword.
 
-cli.add_command(tag)
+    path of the file to tag
+    tag to add to the file
+
+    """
+    print("Tagging a file...")
+
+
+if __name__ == "__main__":
+    cli()
