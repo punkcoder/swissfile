@@ -6,6 +6,7 @@ and dealing with large numbers of files.
 
 import click
 import logging
+import os
 
 
 @click.group()
@@ -15,7 +16,7 @@ def cli():
 
 @cli.command()
 @click.option("--path", default=".", help="Path to file.")
-def tag(path: str, tag: str) -> dict:
+def tag(path: str, tag: str):
     """
     Tag a file with a keyword.
 
@@ -25,6 +26,26 @@ def tag(path: str, tag: str) -> dict:
     """
     print("Tagging a file...")
 
+    # check to see if the file exists is it doesnt then return an error
+    if not os.path.exists(path):
+        return {"error": f"File {path} does not exist."}
+
+
+@cli.command()
+@click.option("--path", default=".", help="Path to file.")
+def untag(path: str, tag: str):
+	"""
+	Remove a tag from a file.
+
+	path of the file to tag
+	tag to add to the file
+
+	"""
+	print("Removing a tag from a file...")
+
+	# check to see if the file exists is it doesnt then return an error
+	if not os.path.exists(path):
+		return {"error": f"File {path} does not exist."}
 
 if __name__ == "__main__":
     cli()

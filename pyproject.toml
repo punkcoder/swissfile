@@ -11,11 +11,17 @@ requests = "^2.31.0"
 click = "^8.1.7"
 pytest = "^7.4.3"
 black = "^23.12.1"
+pytest-click = "^1.1.0"
 
 
 [[tool.poetry.source]]
 name = "github"
 url = "https://github.com/punkcoder/swissfile"
+priority = "primary"
+
+
+[[tool.poetry.source]]
+name = "PyPI"
 priority = "primary"
 
 [build-system]

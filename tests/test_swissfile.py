@@ -1,5 +1,7 @@
 import pytest
 import os
+import click
+from pytest_click import cli_runner
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -16,13 +18,22 @@ def execute_before_any_test():
         os.remove("tests/testfile.txt")
 
 
-def test_tag():
+def test_tag_import():
     from swissfile.swissfile import tag
 
-
-def test_untag():
+def test_untag_import():
     from swissfile.swissfile import untag
 
 
-def test_tagged_missing_file():
-    from swissfile.swissfile import tagged
+def test_untag_missing_file(cli_runner):
+    from swissfile.swissfile import untag
+    result = cli_runner.invoke(untag, ["--path", "tests/missing.txt", "--tag", "test"])
+    assert result.exit_code != 0 
+    
+    
+def test_tag_missing_file(cli_runner):
+    from swissfile.swissfile import tag
+    result = cli_runner.invoke(tag, ["--path", "tests/missing.txt", "--tag", "test"])
+    assert result.exit_code != 0
+    
+    
