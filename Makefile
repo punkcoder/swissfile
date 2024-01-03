@@ -18,3 +18,7 @@ env:
 
 test:
 	.venv/bin/python -m pytest 
+
+build:
+	bash -c '.venv/bin/python setup.py build'
+	bash -c '.venv/bin/python setup.py sdist bdist_wheel'
