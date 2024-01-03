@@ -3,12 +3,19 @@ from setuptools import setup
 setup(
     name="swissfile",
     version="0.1",
-    py_modules=["swissfile"],
+    py_modules=["src.swissfile.cli"],
+    packages=[
+        "src.swissfile.cli",
+        "src.swissfile.tagging", 
+        "src.tests"
+        ],
+    entry_points={
+        "console_scripts": [
+            "swissfile = src.swissfile.cli:main",
+        ]
+    },
     install_requires=[
         "Click",
     ],
-    entry_points="""
-        [console_scripts]
-        swissfile=swissfile:cli
-    """,
+    test_suite="src.tests",
 )

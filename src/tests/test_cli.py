@@ -40,6 +40,7 @@ def test_untag_import():
 
 
 def test_untag_missing_file(cli_runner):
+    from src.swissfile.cli import main
     from src.swissfile.cli import untag
 
     result = cli_runner.invoke(untag, ["--path", "tests/missing.txt", "--tag", "test"])
