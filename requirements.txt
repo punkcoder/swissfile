@@ -3,3 +3,8 @@ click
 pytest
 black
 pytest-click
+tox
+codecov
+pytest-cov
+sphinx
+recommonmark

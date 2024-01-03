@@ -2,9 +2,9 @@ name: Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main, dev/punkcoder ]
   pull_request:
-    branches: [ master ]
+    branches: [ main, dev/punkcoder ]
 
 jobs:
   testing:
@@ -28,28 +28,7 @@ jobs:
     - name: Test
       run: |
         python --version
-        tox -e coverage
-
-    - name: Upload Coverage
-      run: codecov
-
-  flake8:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Set up Python
-      uses: actions/setup-python@v2
-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip tox
-
-    - name: Flake8
-      run: |
-        python --version
-        tox -e flake8less
+        tox 
 
   docs:
     runs-on: ubuntu-latest
