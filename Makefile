@@ -13,8 +13,8 @@ env:
 	bash -c 'rm -rf .venv'
 	python3 -m venv .venv
 	.venv/bin/pip install -r requirements.txt
-	bash -c 'source .venv/bin/activate'
-	python3 -m black src/
+	bash -c 'source .venv/bin/activate && black src/'
+	
 
 test:
 	.venv/bin/python -m pytest 

@@ -6,3 +6,5 @@ pytest-click
 tox
 codecov
 pytest-cov
+sphinx
+recommonmark
