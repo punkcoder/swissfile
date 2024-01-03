@@ -35,15 +35,19 @@ def add_tag_to_file(file, tag):
     """
     Add a tag to a file.
     """
-    if os.path.exists(file):
-        if os.path.exists(f".{file}.tagdata"):
-            with open(f".{file}.tagdata", "r") as f:
-                if tag in f.read():
-                    return {}
+    try:
 
-        with open(f".{file}.tagdata", "a") as f:
-            # check to see if the tag is already in the file
-            f.write(f"{tag}\n")
+        if os.path.exists(file):
+            if os.path.exists(f"{file}.tagdata"):
+                with open(f"{file}.tagdata", "r") as f:
+                    if tag in f.read():
+                        return {}
+
+            with open(f"{file}.tagdata", "w") as f:
+                # check to see if the tag is already in the file
+                f.write(f"{tag}\n")
+    except Exception as e:
+        logging.error(e)
 
 
 @cli.command()
@@ -109,7 +113,31 @@ def untag(path: str, tag: str):
         os.remove(f".{path}.tagdata")
 
     
-    
+@cli.command()
+@click.option("--path", default=".", help="Path to file.")
+@click.option("--tag", default=".", help="Tag to add.")
+def tagall(path: str, tag: str):
+    """
+    Tag all files in a directory with a keyword.
+
+    path of the file to tag
+    tag to add to the file
+
+    """
+    print("Tagging all files in a directory...")
+
+    # check to see if the file exists is it doesnt then return an error
+    if not os.path.exists(path):
+        return {"error": f"File {path} does not exist."}
+
+    if not verify_tag(tag):
+        return {"error": verify_tag(tag)}
+
+    # check to see if the supplied path value is a file or a directory
+    if os.path.isdir(path):
+        # if it is a directory then add the tag to all files in the directory
+        for file in os.listdir(path):
+            add_tag_to_file(file, tag)
 
 
 if __name__ == "__main__":
