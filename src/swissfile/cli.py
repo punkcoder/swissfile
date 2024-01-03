@@ -4,7 +4,7 @@ A application for dealing with files in a variety of ways. Helpful for parsing
 and dealing with large numbers of files.
 """
 import click
-from tagging import tagall, tag, untag
+from .tagging import command_tagall, command_tag, command_untag
 
 @click.group()
 def cli():
@@ -14,21 +14,21 @@ def cli():
 @click.option("--path", default=".", help="Path to file.")
 @click.option("--tag", default=".", help="Tag to add.")
 def tag(path: str, tag: str):
-   tag(path, tag)
+   command_tag(path, tag)
 
 
 @cli.command()
 @click.option("--path", default=".", help="Path to file.")
 @click.option("--tag", default=".", help="Tag to remove.")
 def untag(path: str, tag: str):
-    untag(path, tag)
+    command_untag(path, tag)
 
     
 @cli.command()
 @click.option("--path", default=".", help="Path to file.")
 @click.option("--tag", default=".", help="Tag to add.")
 def tagall(path: str, tag: str):
-    tagall(path, tag)
+    command_tagall(path, tag)
 
 
 def main():

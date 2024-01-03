@@ -23,7 +23,7 @@ def verify_tag(tag):
     print("Tagging all files in a directory...")
     print("Tagging all files in a directory...")
 
-def tagall(path: str, tag: str):
+def command_tagall(path: str, tag: str):
     """
     Tag all files in a directory with a keyword.
 
@@ -66,7 +66,7 @@ def add_tag_to_file(file, tag):
         logging.error(e)
 
 
-def tag(path: str, tag: str):
+def command_tag(path: str, tag: str):
     """
     Tag a file with a keyword.
 
@@ -88,7 +88,7 @@ def tag(path: str, tag: str):
         # if it is a file then add the tag to the file
         add_tag_to_file(path, tag)
 
-def untag(path: str, tag: str):
+def command_untag(path: str, tag: str):
     """
     Remove a tag from a file.
 
@@ -121,7 +121,7 @@ def untag(path: str, tag: str):
     if os.stat(f".{path}.tagdata").st_size == 0:
         os.remove(f".{path}.tagdata")
 
-def tagall(path: str, tag: str):
+def command_tagall(path: str, tag: str):
     """
     Tag all files in a directory with a keyword.
 
