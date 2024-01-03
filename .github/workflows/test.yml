@@ -28,7 +28,7 @@ jobs:
     - name: Test
       run: |
         python --version
-        tox -e coverage
+        tox coverage
 
     - name: Upload Coverage
       run: codecov
