@@ -30,9 +30,6 @@ jobs:
         python --version
         tox coverage
 
-    - name: Upload Coverage
-      run: codecov
-
   docs:
     runs-on: ubuntu-latest
 
