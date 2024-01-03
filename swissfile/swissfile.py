@@ -140,5 +140,8 @@ def tagall(path: str, tag: str):
             add_tag_to_file(file, tag)
 
 
+def main():
+    cli()
+
 if __name__ == "__main__":
     cli()
