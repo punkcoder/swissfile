@@ -59,7 +59,6 @@ def test_verify_tag_valid():
 
 
 def test_untag_missing_file(cli_runner):
-def test_untag_missing_file(cli_runner):
     from src.swissfile.cli import tag
 
     result = cli_runner.invoke(

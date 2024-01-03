@@ -5,8 +5,7 @@ setup(
     version="0.1",
     py_modules=["src.swissfile.cli"],
     packages=[
-        "src.swissfile.cli",
-        "src.swissfile.tagging", 
+        "src.swissfile",
         "src.tests"
         ],
     entry_points={
