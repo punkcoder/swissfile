@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name='swissfile',
-    version='0.1',
-    py_modules=['swissfile'],
+    name="swissfile",
+    version="0.1",
+    py_modules=["swissfile"],
     install_requires=[
-        'Click',
+        "Click",
     ],
-    entry_points='''
+    entry_points="""
         [console_scripts]
         swissfile=swissfile:cli
-    ''',
+    """,
 )

@@ -1,0 +1,5 @@
+requests
+click
+pytest
+black
+pytest-click
