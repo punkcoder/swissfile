@@ -4,7 +4,7 @@ A application for dealing with files in a variety of ways. Helpful for parsing
 and dealing with large numbers of files.
 """
 import click
-from .tagging import command_tagall, command_tag, command_untag
+from tagging import command_tagall, command_tag, command_untag
 
 @click.group()
 def cli():
