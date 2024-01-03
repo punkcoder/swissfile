@@ -10,10 +10,11 @@ clean:
 	bash -c 'rm -rf .venv'
 
 env:
+	bash -c 'rm -rf .venv'
 	python3 -m venv .venv
 	.venv/bin/pip install -r requirements.txt
-	source .venv/bin/activate
-	black
+	bash -c 'source .venv/bin/activate'
+	python3 -m black src/
 
 test:
 	.venv/bin/python -m pytest 

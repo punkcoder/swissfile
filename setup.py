@@ -4,10 +4,7 @@ setup(
     name="swissfile",
     version="0.1",
     py_modules=["src.swissfile.cli"],
-    packages=[
-        "src.swissfile",
-        "src.tests"
-        ],
+    packages=["src.swissfile", "src.tests"],
     entry_points={
         "console_scripts": [
             "swissfile = src.swissfile.cli:main",
