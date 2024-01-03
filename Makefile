@@ -6,3 +6,12 @@ clean:
 	bash -c 'rm -rf *.egg-info'
 	bash -c 'rm -rf .pytest_cache'
 	bash -c 'rm -rf .coverage'
+	bash -c 'rm -rf .tox'
+	bash -c 'rm -rf .venv'
+
+env:
+	python3 -m venv .venv
+	.venv/bin/pip install -r requirements.txt
+
+test:
+	.venv/bin/python -m pytest 
