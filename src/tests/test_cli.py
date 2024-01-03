@@ -19,6 +19,10 @@ def execute_before_any_test():
     if os.path.exists("tests/testfile.txt"):
         print('Removing the test file...')
         os.remove("tests/testfile.txt")
+    
+    if os.path.exists("tests/testfile.txt.tagdata"):
+        print('Removing the test file...')
+        os.remove("tests/testfile.txt.tagdata")
 
 
 
