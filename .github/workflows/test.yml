@@ -28,7 +28,7 @@ jobs:
     - name: Test
       run: |
         python --version
-        tox coverage
+        tox 
 
   docs:
     runs-on: ubuntu-latest
