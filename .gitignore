@@ -5,8 +5,7 @@ poetry.lock
 .vscode/
 .venv/
 .pytest_cache/
-```
-swissfile/swissfile.egg-info
+swissfile.egg-info/
 swissfile/build/
-```
 tests/
+build/
