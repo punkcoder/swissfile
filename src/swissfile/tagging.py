@@ -1,8 +1,3 @@
-#!/usr/bin/env python3
-"""
-A application for dealing with files in a variety of ways. Helpful for parsing 
-and dealing with large numbers of files.
-"""
 
 import click
 import logging
@@ -10,11 +5,6 @@ import os
 import re
 
 tag_regex = re.compile(r"^[a-zA-Z0-9_]+\=[a-zA-Z0-9_]+$")
-
-
-@click.group()
-def cli():
-    pass
 
 
 def verify_tag(tag):
@@ -29,6 +19,32 @@ def verify_tag(tag):
         return {"error": "Tag must be in the format key=value."}
 
     return True
+
+    print("Tagging all files in a directory...")
+    print("Tagging all files in a directory...")
+
+def tagall(path: str, tag: str):
+    """
+    Tag all files in a directory with a keyword.
+
+    path of the file to tag
+    tag to add to the file
+
+    """
+    print("Tagging all files in a directory...")
+
+    # check to see if the file exists is it doesnt then return an error
+    if not os.path.exists(path):
+        return {"error": f"File {path} does not exist."}
+
+    if not verify_tag(tag):
+        return {"error": verify_tag(tag)}
+
+    # check to see if the supplied path value is a file or a directory
+    if os.path.isdir(path):
+        # if it is a directory then add the tag to all files in the directory
+        for file in os.listdir(path):
+            add_tag_to_file(file, tag)
 
 
 def add_tag_to_file(file, tag):
@@ -50,9 +66,6 @@ def add_tag_to_file(file, tag):
         logging.error(e)
 
 
-@cli.command()
-@click.option("--path", default=".", help="Path to file.")
-@click.option("--tag", default=".", help="Tag to add.")
 def tag(path: str, tag: str):
     """
     Tag a file with a keyword.
@@ -75,10 +88,6 @@ def tag(path: str, tag: str):
         # if it is a file then add the tag to the file
         add_tag_to_file(path, tag)
 
-
-@cli.command()
-@click.option("--path", default=".", help="Path to file.")
-@click.option("--tag", default=".", help="Tag to remove.")
 def untag(path: str, tag: str):
     """
     Remove a tag from a file.
@@ -112,10 +121,6 @@ def untag(path: str, tag: str):
     if os.stat(f".{path}.tagdata").st_size == 0:
         os.remove(f".{path}.tagdata")
 
-    
-@cli.command()
-@click.option("--path", default=".", help="Path to file.")
-@click.option("--tag", default=".", help="Tag to add.")
 def tagall(path: str, tag: str):
     """
     Tag all files in a directory with a keyword.
@@ -138,10 +143,3 @@ def tagall(path: str, tag: str):
         # if it is a directory then add the tag to all files in the directory
         for file in os.listdir(path):
             add_tag_to_file(file, tag)
-
-
-def main():
-    cli()
-
-if __name__ == "__main__":
-    cli()

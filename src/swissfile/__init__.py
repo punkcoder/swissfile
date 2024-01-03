@@ -1,4 +1,4 @@
-from src.swissfile.cli.swissfile import main
+from swissfile.cli.cli import main
 
 if __name__ == "__main__":
     main()

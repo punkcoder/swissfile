@@ -22,15 +22,15 @@ def execute_before_any_test():
 
 
 def test_tag_import():
-    from swissfile.swissfile import tag
+    from swissfile.cli.cli import tag
 
 
 def test_untag_import():
-    from swissfile.swissfile import untag
+    from swissfile.cli import untag
 
 
 def test_untag_missing_file(cli_runner):
-    from swissfile.swissfile import untag
+    from swissfile.cli import untag
 
     result = cli_runner.invoke(untag, ["--path", "tests/missing.txt", "--tag", "test"])
     assert result.exit_code == 0
