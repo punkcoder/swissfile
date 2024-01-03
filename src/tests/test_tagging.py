@@ -6,6 +6,9 @@ from pytest_click import cli_runner
 
 @pytest.fixture(scope="session", autouse=True)
 def execute_before_any_test():
+    if not os.path.exists("tests/"):
+        os.mkdir("tests/")
+
     if os.path.exists("tests/testfile.txt"):
         print('Removing previous test files...')
         os.remove("tests/testfile.txt")
@@ -19,6 +22,11 @@ def execute_before_any_test():
     if os.path.exists("tests/testfile.txt"):
         print('Removing the test file...')
         os.remove("tests/testfile.txt")
+    
+    if os.path.exists("tests/testfile.txt.tagdata"):
+        print('Removing the test file...')
+        os.remove("tests/testfile.txt.tagdata")
+
 
 def test_verify_tag_empty():
     from src.swissfile.tagging import verify_tag
