@@ -12,11 +12,12 @@ from src.swissfile.tagging import command_tagall, command_tag, command_untag
 def cli():
     pass
 
+
 @cli.command()
 @click.option("--path", default=".", help="Path to file.")
 @click.option("--tag", default=".", help="Tag to add.")
 def tag(path: str, tag: str):
-   command_tag(path, tag)
+    command_tag(path, tag)
 
 
 @cli.command()
@@ -25,7 +26,7 @@ def tag(path: str, tag: str):
 def untag(path: str, tag: str):
     command_untag(path, tag)
 
-    
+
 @cli.command()
 @click.option("--path", default=".", help="Path to file.")
 @click.option("--tag", default=".", help="Tag to add.")
@@ -35,6 +36,7 @@ def tagall(path: str, tag: str):
 
 def main():
     cli()
+
 
 if __name__ == "__main__":
     cli()

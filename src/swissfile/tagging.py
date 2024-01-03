@@ -1,4 +1,3 @@
-
 import click
 import logging
 import os
@@ -22,6 +21,7 @@ def verify_tag(tag):
 
     print("Tagging all files in a directory...")
     print("Tagging all files in a directory...")
+
 
 def command_tagall(path: str, tag: str):
     """
@@ -52,7 +52,6 @@ def add_tag_to_file(file, tag):
     Add a tag to a file.
     """
     try:
-
         if os.path.exists(file):
             if os.path.exists(f"{file}.tagdata"):
                 with open(f"{file}.tagdata", "r") as f:
@@ -88,6 +87,7 @@ def command_tag(path: str, tag: str):
         # if it is a file then add the tag to the file
         add_tag_to_file(path, tag)
 
+
 def command_untag(path: str, tag: str):
     """
     Remove a tag from a file.
@@ -101,16 +101,16 @@ def command_untag(path: str, tag: str):
     # check to see if the file exists is it doesnt then return an error
     if not os.path.exists(path):
         return {"error": f"File {path} does not exist."}
-    
-    #check to see if the tag is in the tagdata file
+
+    # check to see if the tag is in the tagdata file
     if not os.path.exists(f".{path}.tagdata"):
         return {"error": f"File {path} does not have any tags."}
-    
-    #check to see if the tag is in the tagdata file
+
+    # check to see if the tag is in the tagdata file
     if not tag in open(f".{path}.tagdata").read():
         return {"error": f"File {path} does not have the tag {tag}."}
     else:
-        #remove the tag from the file
+        # remove the tag from the file
         with open(f".{path}.tagdata", "r") as f:
             lines = f.readlines()
         with open(f".{path}.tagdata", "w") as f:
@@ -120,6 +120,7 @@ def command_untag(path: str, tag: str):
     # if the length of the stripped file is 0 then remove the file
     if os.stat(f".{path}.tagdata").st_size == 0:
         os.remove(f".{path}.tagdata")
+
 
 def command_tagall(path: str, tag: str):
     """
